@@ -103,7 +103,7 @@ class StatTrackerTest < MiniTest::Test
   end
 
   def test_it_finds_most_accurate_team
-    skip
+    # skip
     assert_equal "New York City FC", @stat_tracker.most_accurate_team("20122013")
   end
 

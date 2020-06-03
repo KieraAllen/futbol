@@ -120,12 +120,24 @@ class SeasonStats
   end
 
   def most_accurate_team(season_id)
-    team_id = @game_team_collection.game_teams_array.max_by do |game|
-      if season_id.slice(0..3) == game.game_id.slice(0..3)
-        game.goals.to_f / game.shots.to_f
-      end
+    # The reason this error is being thrown is that
+    # max_by is using numerical comparisons beneath the hood
+    # and since you are only calculating the games in the correct season
+    # it is returning NIL for the ones that are not in the correct season
+    # and using that value to compare
+    # that's why you see "comparison of NilClass with 0.6666666666666666 failed"
+
+    team_id = game_teams_in_season(season_id).max_by do |game|
+      game.goals.to_f / game.shots.to_f
     end.team_id.to_i
+
     @team_collection.team_name_by_id(team_id)
+  end
+
+  def game_teams_in_season(season_id)
+    @game_team_collection.game_teams_array.find_all do |game_team|
+      season_id.slice(0..3) == game_team.game_id.slice(0..3)
+    end
   end
 
   def least_accurate_team(season_id)

@@ -68,7 +68,7 @@ class GameCollection
   end
 
   def games_by_season
-    games_by_season = @games_array.group_by do |game|
+    @games_array.group_by do |game|
       game.season
     end
   end
