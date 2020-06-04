@@ -32,6 +32,11 @@ The **first half** of the project focuses on building the base statistics functi
 - Writing organized and readable code
 - Group collaboration
 
+## Design Strategy
+StatTracker is a program that takes data in the form of CSV files and organizes it.
+- In addition to the main StatTracker class, there are 3 classes for collection creation from each CSV file (TeamCollection, GameCollection, GameTeamCollection), and a fourth class to hold some complex methods (SeasonStats).
+- The project also includes one Module (Loadable) for loading CSV files.
+
 ## Project Group Members
 
 Kiera Allen - [Github](https://github.com/KieraAllen)
